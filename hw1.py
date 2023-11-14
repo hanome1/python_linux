@@ -13,17 +13,28 @@
 
 """
 import subprocess
+import re
 
 if __name__ == '__main__':
     def commander(cmd, text):
         res = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, encoding='utf-8')
         if res.returncode == 0:
             out = res.stdout
-        #     # lst = out.split('\n')
             if out.__contains__(text):
                 return True
         return False
 
+    def commander1(cmd, text):
+        res = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, encoding='utf-8')
+        if res.returncode == 0:
+            words = re.sub(r'[^\w\s]', ' ', res.stdout.lower()).split()
+            # print(words)
+            if text in words:
+                return True
+        return False
 
-    print(commander('cat /etc/os-release', 'VERSION_CODENAME=jammy'))
-    print(commander(input('input the command: '), input('input the text you\'re looking for: ')))
+
+    # print(commander('cat /etc/os-release', 'VERSION_CODENAME=jammy'))
+    # print(commander(input('input the command: '), input('input the text you\'re looking for: ')))
+
+    print(commander1('cat /etc/os-release', 'jammy'))
