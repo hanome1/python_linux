@@ -9,7 +9,7 @@ folder1 = "/home/lemonah/tests/folder1"
 def checkout(cmd, text):
     result = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, encoding='utf-8')
     if text in result.stdout and result.returncode == 0:
-        # print(result.stdout)
+        print(result.stdout)
         return True
     else:
         return False
@@ -59,7 +59,7 @@ def test_step2():
 
 
 def test_step6():
-    """TESTING FLAG l"""
+    """TESTING COMMAND l"""
 
     stock_files = subprocess.run(f'ls {tst}', shell=True, stdout=subprocess.PIPE, encoding='utf-8').stdout.split()
     # print('\n', stock_files)
@@ -68,7 +68,7 @@ def test_step6():
 
 
 def test_step7():
-    """TESTING FLAG x"""
+    """TESTING COMMAND x"""
 
     subprocess.run(f'cd {main}; 7z a {out}/arc_subfol', shell=True, stdout=subprocess.PIPE, encoding='utf-8')
     stock_files = subprocess.run(f'ls {main}', shell=True, stdout=subprocess.PIPE, encoding='utf-8').stdout.split()
@@ -79,4 +79,9 @@ def test_step7():
 
 
 def test_step8():
-    pass
+    """TESTING COMMAND h"""
+
+    crc = subprocess.run(f'cd {out}; crc32 arx2.7z', shell=True, stdout=subprocess.PIPE, encoding='utf-8')
+    crc = crc.stdout.upper()
+    # print(crc)
+    assert checkout(f'cd {out}; 7z h arx2.7z', crc)
