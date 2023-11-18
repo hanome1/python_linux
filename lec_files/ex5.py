@@ -1,4 +1,4 @@
-from checkers import checkout, getout
+from lec_files.checkers import checkout, getout
 
 
 folder_in = "/home/zerg/tst"

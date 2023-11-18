@@ -1,5 +1,5 @@
 import pytest
-from checkers import checkout, getout
+from lec_files.checkers import checkout, getout
 import random, string
 import yaml
 from datetime import datetime
