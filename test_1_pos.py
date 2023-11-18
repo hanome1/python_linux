@@ -56,21 +56,6 @@ def test_step2():
     # assert checkout("cd /home/lemonah/tests/folder1; ls", ["qwe", "rty"]) # ne robit
 
 
-# def test_step3():
-# # test3 =========show info about arx2.7z
-# assert checkout("cd /home/user/out; 7z t arx2.7z", "Everything is Ok")
-#
-#
-# def test_step4():
-# # test4 ========= add archive update
-# assert checkout("cd /home/user/tst; 7z u ../out/arx2.7z", "Everything is Ok")
-#
-#
-# def test_step5():
-# # test5 ========= delete docs one and two from archive in folder out
-# assert checkout("cd /home/user/out; 7z d arx2.7z", "Everything is Ok")
-
-
 # def test_step1():
 #     # test1 =================== create archive
 #     result1 = checkout("cd {}; 7z a {}/arx2".format(tst, out), "Everything is Ok")
