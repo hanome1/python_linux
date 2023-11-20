@@ -1,14 +1,15 @@
-#home: /home/lemonah/tests/
-#folder_in: /home/lemonah/tests/tst/
-#folder_out: /home/lemonah/tests/out/
-#folder_ext: /home/lemonah/tests/folder1/
-#folder_ext2: /home/lemonah/tests/folder2/
-#count: 5
-#bs: 1M
-#type: zip
+home: /home/lemonah/tests/
+folder_in: /home/lemonah/tests/tst/
+folder_out: /home/lemonah/tests/out/
+folder_ext: /home/lemonah/tests/folder1/
+folder_ext2: /home/lemonah/tests/folder2/
+count: 5
+bs: 1M
 
-home: /tests/
-folder_in: tests/tst/
-folder_out: tests/out/
-folder_ext: tests/folder1/
-folder_ext2: tests/folder2/
+type: zip
+
+#home: /tests/
+#folder_in: tests/tst/
+#folder_out: tests/out/
+#folder_ext: tests/folder1/
+#folder_ext2: tests/folder2/

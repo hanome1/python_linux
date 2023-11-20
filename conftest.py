@@ -1,5 +1,6 @@
 import random
 import string
+import subprocess
 from datetime import datetime
 
 import pytest
@@ -11,22 +12,24 @@ with open('config.yaml') as f:
     data = yaml.safe_load(f)
 
 
-@pytest.fixture(autouse=True, scope='function')
+@pytest.fixture()
 def make_folders():
     return checkout(
         "mkdir {} {} {} {}".format(data["folder_in"], data["folder_out"], data["folder_ext"], data["folder_ext2"]), "")
 
 
-@pytest.fixture()
+@pytest.fixture(scope="session")
 def clear_folders():
-    return checkout("rm -rf {} {} {} {}".format(data["folder_in"], data["folder_out"], data["folder_ext"],
-                                                        data["folder_ext2"]), "")
+    yield checkout("rm -rf {} {} {} {}".format(data["folder_in"], data["folder_out"], data["folder_ext"],
+                                               data["folder_ext2"]), "")
 
 
 @pytest.fixture()
 def make_files():
-    list_of_files = []
-    for i in range(data["count"]):
+    checkout(f'cd {data["folder_in"]}; touch qwe', '')
+    checkout(f'cd {data["folder_in"]}; touch rty', '')
+    list_of_files = ['qwe', 'rty']
+    for i in range(3, data["count"]):
         filename = ''.join(random.choices(string.ascii_uppercase + string.digits, k=5))
         if checkout("cd {}; dd if=/dev/urandom of={} bs={} count=1 iflag=fullblock".format(data["folder_in"], filename,
                                                                                            data["bs"]), ""):
@@ -48,8 +51,21 @@ def make_subfolder():
         return subfoldername, testfilename
 
 
-@pytest.fixture(autouse=True)
+@pytest.fixture(autouse=True, scope='function')
 def print_time():
     print("Start: {}".format(datetime.now().strftime("%H:%M:%S.%f")))
     yield
     print("Finish: {}".format(datetime.now().strftime("%H:%M:%S.%f")))
+
+
+@pytest.fixture(autouse=True, scope='module')
+def stat_clear():
+    checkout('rm {}stat.txt'.format(data['home']), '')
+
+
+@pytest.fixture(autouse=True, scope='function')
+def add_str_to_stat():
+    loadavg = subprocess.run('cat /proc/loadavg', shell=True, stdout=subprocess.PIPE, encoding='utf-8').stdout[:-1:]
+    yield checkout('echo "{}\t{}\t{}\t{}" >> {}stat.txt'.format(datetime.now(), data['count'], data['bs'], loadavg, data['home']), ''
+
+                   # а куда илд то ставить и что он должен возвращать?!
