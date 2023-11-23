@@ -1,7 +1,15 @@
-folder_in: /home/zerg/tst
-folder_out: /home/zerg/out
-folder_ext: /home/zerg/folder1
-folder_ext2: /home/zerg/folder2
+home: /home/test/tests/
+folder_in: /home/test/tests/tst/
+folder_out: /home/test/tests/out/
+folder_ext: /home/test/tests/folder1/
+folder_ext2: /home/test/tests/folder2/
 count: 5
 bs: 1M
+
 type: zip
+
+#home: /tests/
+#folder_in: tests/tst/
+#folder_out: tests/out/
+#folder_ext: tests/folder1/
+#folder_ext2: tests/folder2/
