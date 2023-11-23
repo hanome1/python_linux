@@ -1,8 +1,8 @@
-home: /home/lemonah/tests/
-folder_in: /home/lemonah/tests/tst/
-folder_out: /home/lemonah/tests/out/
-folder_ext: /home/lemonah/tests/folder1/
-folder_ext2: /home/lemonah/tests/folder2/
+home: /home/test/tests/
+folder_in: /home/test/tests/tst/
+folder_out: /home/test/tests/out/
+folder_ext: /home/test/tests/folder1/
+folder_ext2: /home/test/tests/folder2/
 count: 5
 bs: 1M
 
